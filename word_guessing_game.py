@@ -35,10 +35,10 @@ while(game_running):
     while (turn_number < turn_limit):
         
         print("You have 7 guesses")
+        print("Words are case sensitive and can contain apostrophes")
 
         # get user input
         guess = str(input(f"Guess {turn_number + 1}: "))
-        
 
         # single letter guess
         if len(guess) == 1:
@@ -53,7 +53,7 @@ while(game_running):
                 print("You win!")
                 win_count += 1
                 break
-            elif guess != correct_word and turn_number != 5:
+            else:
                 turn_number += 1
 
         print("".join(display))
