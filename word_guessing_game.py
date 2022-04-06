@@ -13,9 +13,11 @@ correct_word = get_word()
 display = ["_"] * len(correct_word)
 turn_limit = 7
 
-for i in range(turn_limit):
+turn_number = 0
+while (turn_number < turn_limit):
 
-    guess = str(input("Guess: "))
+    # get user input
+    guess = str(input(f"Guess {turn_number + 1}: "))
     
 
     # single letter guess
@@ -23,11 +25,19 @@ for i in range(turn_limit):
         for i,v in enumerate(correct_word):
             if v == guess:
                 display[i] = v
-        print("".join(display))
+        turn_number += 1
 
     # guess full word
     else:
         if guess == correct_word:
             print("You win!")
             break
+        elif guess != correct_word and turn_number != 5:
+            turn_number += 1
+
+    print("".join(display))
+
+if turn_number == turn_limit:
+    print("You lost")
+    print(f"The correct word was {correct_word}")
 
