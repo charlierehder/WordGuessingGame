@@ -6,10 +6,14 @@ def get_word():
     with open(word_filename, "r") as word_file:
         return random.choice(word_file.readlines()).strip()
 
+# define set to store words that have been used in previous games
 used_words = set()
+
+# define win and loss counts to display
 win_count = 0
 loss_count = 0
 
+# system loop
 game_running = True
 while(game_running):
 
@@ -19,10 +23,14 @@ while(game_running):
     while(correct_word in used_words):
         correct_word = get_word()
 
+    # create 'blank' string to display as game progresses
     display = ["_"] * len(correct_word)
+
+    # set turn limit and display blank string
     turn_limit = 7
     print("".join(display))
 
+    # game loop
     turn_number = 0
     while (turn_number < turn_limit):
         
@@ -50,11 +58,13 @@ while(game_running):
 
         print("".join(display))
 
+    # print loss message and increment loss counter
     if turn_number == turn_limit:
         print("You lost")
         print(f"The correct word was {correct_word}")
         loss_count += 1
 
+    # display win/loss record
     print("---------------------------")
     print(f"| Wins: {str(win_count).zfill(3)} | Losses: {str(loss_count).zfill(3)} |")
     print("---------------------------")
