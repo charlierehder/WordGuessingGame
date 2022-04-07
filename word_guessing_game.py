@@ -30,22 +30,26 @@ while(game_running):
     turn_limit = 7
     print("".join(display))
 
+
+    print("Words are case sensitive and can contain apostrophes")
+    print("You have 7 guesses")
+
     # game loop
     turn_number = 0
     while (turn_number < turn_limit):
         
-        print("You have 7 guesses")
-        print("Words are case sensitive and can contain apostrophes")
 
         # get user input
-        guess = str(input(f"Guess {turn_number + 1}: "))
+        guess = str(input(f"You have {turn_limit - turn_number}/7 lives left: "))
+
+        lose_life = True
 
         # single letter guess
         if len(guess) == 1:
             for i,v in enumerate(correct_word):
                 if v == guess:
+                    lose_life = False
                     display[i] = v
-            turn_number += 1
 
         # guess full word
         else:
@@ -53,8 +57,9 @@ while(game_running):
                 print("You win!")
                 win_count += 1
                 break
-            else:
-                turn_number += 1
+
+        if lose_life: 
+            turn_number += 1
 
         print("".join(display))
 
